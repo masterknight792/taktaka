@@ -1,0 +1,55 @@
+{
+  "name": "taktaka",
+  "productName": "Taktaka",
+  "version": "1.0.0",
+  "description": "Taktaka keyboard and mouse sounds",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win"
+  },
+  "dependencies": {
+    "realm": "^12.13.0"
+  },
+  "optionalDependencies": {
+    "uiohook-napi": "^1.5.4"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "app.taktaka",
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "package.json",
+      "assets/**"
+    ],
+    "win": {
+      "target": "nsis",
+      "signAndEditExecutable": false
+    },
+    "npmRebuild": false,
+    "asarUnpack": [
+      "**/node_modules/realm/**",
+      "**/node_modules/uiohook-napi/**"
+    ],
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Taktaka",
+      "deleteAppDataOnUninstall": false
+    }
+  },
+  "author": "Taktaka",
+  "allowScripts": {
+    "electron@33.4.11": true,
+    "realm@12.15.0": true,
+    "uiohook-napi@1.5.5": true
+  }
+}

@@ -1,0 +1,301 @@
+<!doctype html><html lang="en" data-theme="synthwave" data-mode="dark"><head><meta charset="utf-8"><title>Taktaka</title>
+<style>
+:root{--op:100%;--cb:color-mix(in srgb,var(--card) var(--op),transparent)}
+[data-mode=dark]{--bg:#1b202b;--card:#252b3a;--tx:#e8ebf3;--mu:#8a93a8}
+[data-mode=light]{--bg:#eef1f6;--card:#fff;--tx:#1a202c;--mu:#5d6678}
+[data-theme=classic]{--bg:#1b202b;--card:#252b3a;--tx:#e8ebf3;--mu:#9aa3b8;--ac:#5b5bf0;--ac2:#8b8bff}
+[data-theme=synthwave]{--bg:#120a24;--card:#1e1236;--tx:#f3e8ff;--mu:#a597c9;--ac:#ff3fa4;--ac2:#18d4ff}
+[data-theme=forest]{--bg:#08130c;--card:#102016;--tx:#e6f5ea;--mu:#8fb09a;--ac:#34c759;--ac2:#a3e635}
+[data-theme=ocean]{--bg:#06121d;--card:#0d2236;--tx:#e6f3fb;--mu:#8aa7bd;--ac:#38bdf8;--ac2:#22d3ee}
+[data-theme=sunset]{--bg:#1a0c10;--card:#2b1319;--tx:#fdebe6;--mu:#c79a94;--ac:#fb7185;--ac2:#f59e0b}
+[data-theme=amethyst]{--bg:#0f0a1f;--card:#1a1235;--tx:#efe9ff;--mu:#a99bd0;--ac:#a78bfa;--ac2:#f0abfc}
+[data-theme=neon]{--bg:#05060b;--card:#0c0f1a;--tx:#eafff4;--mu:#7fa99a;--ac:#22ff88;--ac2:#00e5ff}
+[data-theme=graphite]{--bg:#111214;--card:#1c1d20;--tx:#ececec;--mu:#9a9a9a;--ac:#e5e7eb;--ac2:#9ca3af}
+[data-theme=white]{--bg:#eef1f6;--card:#ffffff;--tx:#111827;--mu:#475569;--ac:#2563eb;--ac2:#7c3aed}
+[data-theme=rose]{--bg:#fdf2f4;--card:#ffffff;--tx:#3b0d1a;--mu:#7a4a57;--ac:#e11d48;--ac2:#fb7185}
+[data-theme=mint]{--bg:#ecfdf5;--card:#ffffff;--tx:#053b2e;--mu:#3f6b5d;--ac:#059669;--ac2:#14b8a6}
+*{box-sizing:border-box}body{margin:0;font:14px system-ui,sans-serif;background:var(--bg) center/cover;color:var(--tx);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+#tb{display:flex;align-items:center;gap:8px;padding:0 12px;height:40px;-webkit-app-region:drag;font-weight:700}
+#tb .v{font:600 11px system-ui;background:#8883;border-radius:4px;padding:2px 6px;color:var(--mu)}#tb span.s{flex:1}
+#tb button{-webkit-app-region:no-drag;background:none;border:0;color:var(--tx);width:32px;height:28px;border-radius:6px;cursor:pointer;font-size:15px}#tb button:hover{background:#8883}
+main{flex:1;overflow:auto;padding:12px 28px;display:grid;gap:16px;align-content:start}
+.banner{border:4px solid var(--ac);border-radius:16px;height:clamp(140px,24vw,240px);width:min(100%,560px);flex:none;display:grid;place-items:center;font:800 56px system-ui;color:var(--ac);margin:14px auto 8px;overflow:hidden;transition:transform .07s,box-shadow .07s;background:var(--cb)}.banner img{width:100%;height:100%;object-fit:contain}.banner.press{transform:scale(.94);box-shadow:0 0 34px var(--ac)}
+.sec{display:grid;gap:12px}.sp{display:flex;justify-content:space-between;align-items:center;gap:8px}.sub{color:var(--mu);font-size:12px}
+.pc{position:relative;display:flex;align-items:center;gap:14px;background:color-mix(in srgb,var(--card) var(--op),transparent);border-radius:8px;padding:10px 16px 10px 12px;min-height:64px}
+.pc select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}.pi{width:44px;height:44px;border-radius:8px;background:#0b0e14;display:grid;place-items:center;font:900 22px system-ui;color:#fff}
+.vr{display:flex;align-items:center;gap:12px}.pct{width:52px;font-weight:700;color:var(--mu)}.pct.hot{color:#fbbf24}.vr input{flex:1}
+input[type=range]{accent-color:var(--ac);height:6px;cursor:pointer}.vr input.hot{accent-color:#fbbf24}
+.mu,.ic2{background:none;border:0;color:var(--tx);cursor:pointer;font-size:18px;border-radius:6px;padding:4px 8px}.mu:hover,.ic2:hover{background:#8883}
+hr{border:0;border-top:1px solid #8883;width:100%;margin:0}.line{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
+.tg input{display:none}.tg i{display:block;width:40px;height:22px;border-radius:11px;background:#8885;position:relative;cursor:pointer}.tg i:after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.15s}
+.tg input:checked+i{background:var(--ac)}.tg input:checked+i:after{left:21px}
+select.f,button.b,label.b{background:#8882;color:var(--tx);border:1px solid #8884;border-radius:8px;padding:7px 12px;cursor:pointer;font:inherit}button.p,label.p{background:var(--ac);border-color:var(--ac);color:#fff}
+.th{border:2px solid transparent;border-radius:8px;padding:12px;text-align:center;background:var(--cb);cursor:pointer}.th.on{border-color:var(--ac)}
+h2{margin:6px 0 0;font-size:16px}#log{font:12px monospace;background:#0008;color:#9f9;border-radius:8px;padding:10px;height:240px;overflow:auto;white-space:pre-wrap}
+nav{display:flex;border-top:1px solid #8883;background:var(--cb)}
+nav button{flex:1;background:none;border:0;color:var(--mu);padding:10px 0 8px;cursor:pointer;display:grid;gap:2px;font:12px system-ui}nav button b{font-size:20px;font-weight:400}nav button.on{color:var(--ac)}
+footer{text-align:center;font-size:11px;color:var(--mu);padding:3px}
+.dm{position:absolute;left:0;right:0;top:calc(100% + 4px);background:color-mix(in srgb,var(--card),#000 25%);border:1px solid #8885;border-radius:8px;padding:4px;z-index:30;max-height:230px;overflow:auto;box-shadow:0 8px 24px #0006}
+.dm[hidden]{display:none}.di{padding:9px 12px;border-radius:6px;cursor:pointer}.di:hover{background:#8883}.di.sel{color:var(--ac);font-weight:600}.pc.dd{cursor:pointer}
+nav svg,#tb svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}#tb svg{width:16px;height:16px}nav svg{pointer-events:none}
+.x{background:none;border:0;color:var(--mu);cursor:pointer;font-size:16px;padding:4px 8px}
+#bgimg{position:fixed;inset:0;z-index:-1;background:center/cover no-repeat;opacity:var(--bgo,1)}.seg{display:flex;gap:6px}.help p{margin:4px 0 14px;line-height:1.8}
+.pc,.th,nav{backdrop-filter:blur(var(--blur,6px))}
+body{text-shadow:0 1px 3px color-mix(in srgb,var(--bg) 75%,transparent)}button,input,label,select{text-shadow:none}
+[data-mode=light] .pc,[data-mode=light] .th{border:1px solid #0000001a;box-shadow:0 1px 4px #00000012}
+.thg{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.th{display:grid;gap:8px}.th .sw{display:block;height:36px;border-radius:6px;border:1px solid #8884;background:linear-gradient(135deg,var(--p0) 0 40%,var(--p1) 40% 62%,var(--p2) 62%)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:10px}.tile{position:relative;height:66px;border-radius:8px;background:#8883 center/cover;border:2px solid transparent;cursor:pointer;display:grid;place-items:center;font-size:12px;color:var(--mu)}.tile.on{border-color:var(--ac)}
+.tile .x{position:absolute;top:3px;right:3px;background:#000b;color:#fff;border-radius:50%;width:20px;height:20px;padding:0;font-size:11px;line-height:20px}
+.mo{position:fixed;inset:0;background:#000a;display:grid;place-items:center;z-index:100}.mb{background:color-mix(in srgb,var(--card),#000 15%);border:1px solid #8885;border-radius:12px;padding:18px;width:min(420px,88vw);display:grid;gap:14px}.mb p{margin:0;line-height:1.6}
+main{padding-left:max(28px,calc((100% - 780px)/2));padding-right:max(28px,calc((100% - 780px)/2));scrollbar-width:none}main::-webkit-scrollbar{display:none}
+.side{position:fixed;top:44px;bottom:70px;width:8px;-webkit-app-region:drag;z-index:40}.side.l{left:6px}.side.r{right:6px}
+#grip{position:fixed;right:2px;bottom:2px;width:18px;height:18px;cursor:nwse-resize;z-index:60;opacity:.75;background:linear-gradient(135deg,transparent 48%,var(--mu) 48%,var(--mu) 56%,transparent 56%,transparent 68%,var(--mu) 68%,var(--mu) 76%,transparent 76%,transparent 88%,var(--mu) 88%)}
+.banner:active{transform:scale(.94)}
+.banner.logo{height:auto;display:block}.banner.logo img{display:block;width:100%;height:auto;max-height:280px;object-fit:contain}
+#log{direction:ltr;text-align:left}
+</style></head><body>
+<div id="bgimg"></div>
+<div id="tb"><span>Taktaka</span><span class="v">v1.0.0</span><span class="s"></span>
+<button data-win="min" aria-label="Minimize"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/></svg></button><button data-win="hide" aria-label="Hide to system tray"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></button><button data-win="close" aria-label="Quit"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button></div>
+<main id="main"></main>
+<footer>Latency ≈ <span id="lat">–</span> ms · 32-voice pool</footer>
+<nav id="nav"></nav>
+<div class="side l"></div><div class="side r"></div><div id="grip" title="Drag to resize" aria-label="Resize window"></div>
+<script>
+const $=s=>document.querySelector(s), POOL=32, TABS=[['Home','home'],['Sound packs','music'],['Customize','pal'],['Mood','cloud'],['Settings','sl']];
+// ---------- storage: Realm via IPC in Electron, localStorage fallback in browser ----------
+const mem={};
+const DB=window.mvdx?window.mvdx.db:{
+  settings:async()=>JSON.parse(localStorage.mvdx||'{}'),
+  set:async(k,v)=>{const s=JSON.parse(localStorage.mvdx||'{}');s[k]=v;localStorage.mvdx=JSON.stringify(s)},
+  packs:async()=>Object.values(mem).map(p=>({id:p.id,meta:p.meta})),pack:async id=>mem[id].audio,
+  save:async p=>{mem[p.id]=p},del:async id=>{delete mem[id]}};
+let S={kbPack:'cherry',msPack:'click',kbVol:85,msVol:70,kbPitch:true,msPitch:true,amb:'Rain',ambVol:30,ambOn:false,
+ theme:'classic',light:false,op:80,bg:'',logo:'',out:'',muted:false,verbose:false,telemetry:true,kbOn:true,msOn:true,tab:'Home',ambs:[],top:false,bgo:100,helpLang:'ar',imgs:[],hidden:[],pitch:20,boost:false,autoUse:false,lang:'en'};
+const save=(k,v)=>{S[k]=v;DB.set(k,v)};
+// ---------- logging ----------
+const LOG=[];const log=(m,v)=>{if(v&&!S.verbose)return;LOG.push(`[${new Date().toISOString().slice(11,23)}] ${m}`);if(LOG.length>400)LOG.shift();const e=$('#log');if(e){e.textContent=LOG.join('\n');e.scrollTop=1e9}};
+onerror=(m,s,l)=>log('JS error: '+m+' (line '+l+')');
+// ---------- synth (built-in packs + ambiance) ----------
+function click(sr,P){const n=sr*P.len|0,d=new Float32Array(n);for(let i=0;i<n;i++){const t=i/sr;
+ d[i]=(Math.sin(6.28*P.f*t*(1+.3*Math.exp(-t*80)))*P.tone+(Math.random()*2-1)*P.noise*Math.exp(-t*P.nd))*Math.exp(-t*P.dec)}return d}
+const KEYS=[...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'].map(c=>'Key'+c).concat([...'0123456789'].map(c=>'Digit'+c),
+ Array.from({length:12},(_,i)=>'F'+(i+1)),['Enter','Space','Backspace','Escape','Tab','ShiftLeft','ShiftRight','ControlLeft','AltLeft','CapsLock','ArrowUp','ArrowDown','ArrowLeft','ArrowRight']);
+const MKEYS=['MouseLeft','MouseRight','MouseMiddle','WheelUp','WheelDown'];
+function mk(ctx,id,name,type,keys,P){const sr=ctx.sampleRate,slot=.12,defs={},parts=[];let t=0;
+ for(const k of keys){defs[k]={timing:[]};for(let v=0;v<2;v++){parts.push(click(sr,{...P,f:P.f*(1+(Math.random()-.5)*.1)}));defs[k].timing.push([t*1e3,(t+P.len)*1e3]);t+=slot}}
+ const d=new Float32Array(Math.ceil(t*sr));parts.forEach((p,i)=>d.set(p,Math.round(i*slot*sr)));
+ const b=ctx.createBuffer(1,d.length,sr);b.copyToChannel(d,0);
+ return{id,name,type,author:'Built-in',version:'1.0.0',builtin:true,buffer:b,config:{config_version:'2',id,name,soundpack_type:type,definition_method:'single',definitions:defs}}}
+function amb(ctx,name){const sr=ctx.sampleRate,n=sr*8,b=ctx.createBuffer(2,n,sr);
+ for(let c=0;c<2;c++){const d=b.getChannelData(c);let lp=0,br=0;for(let i=0;i<n;i++){const w=Math.random()*2-1,t=i/sr;lp+=(w-lp)*.25;br=(br+.02*w)/1.02;
+  d[i]=name==='Rain'?lp*.5+(Math.random()<.0004?w:0)*.8:name==='Ocean'?br*9*(.55+.45*Math.sin(6.283*t/4)):name==='Fire'?lp*.08+(Math.random()<.0007?w*1.2:0):br*6*(.6+.4*Math.sin(6.283*t*3/8+c))}}return b}
+// ---------- audio engine ----------
+let ctx,gains={},voices=[],packs={},ambSrc,lats=[];
+function builtins(){
+ packs.cherry=mk(ctx,'cherry','Cherry MX Black','Keyboard',KEYS,{f:120,tone:.9,noise:.6,nd:300,dec:35,len:.12});
+ packs.blue=mk(ctx,'blue','Blue Clicky','Keyboard',KEYS,{f:1800,tone:.5,noise:1,nd:200,dec:45,len:.1});
+ packs.click=mk(ctx,'click','Click Classic','Mouse',MKEYS,{f:2200,tone:.5,noise:.8,nd:500,dec:70,len:.08});
+ packs.soft=mk(ctx,'soft','Soft Click','Mouse',MKEYS,{f:700,tone:.8,noise:.3,nd:400,dec:60,len:.08});
+ for(const id of S.hidden||[])delete packs[id]}
+function initAudio(){if(ctx)return;ctx=new AudioContext({latencyHint:0});
+ for(const k of['kb','ms','amb']){gains[k]=ctx.createGain();gains[k].connect(ctx.destination)}
+ {const n=ctx.sampleRate,b=ctx.createBuffer(1,n,n),d=b.getChannelData(0);for(let i=0;i<n;i++)d[i]=(Math.random()-.5)*1e-4;const s=ctx.createBufferSource();s.buffer=b;s.loop=true;s.connect(ctx.destination);s.start()}
+ builtins();
+ applyGain();if(S.out&&ctx.setSinkId)ctx.setSinkId(S.out).catch(()=>{});setAmb();log('engine: audio context started (resample-on-load)')}
+function applyGain(){if(!ctx)return;const m=S.muted?0:1;const cap=S.boost?200:100,e=x=>Math.min(x,cap)/100;gains.kb.gain.value=m*e(S.kbVol);gains.ms.gain.value=m*e(S.msVol);gains.amb.gain.value=m*e(S.ambVol);if(ambEl&&!ambNode){ambEl.volume=Math.min(1,S.ambVol/100);ambEl.muted=S.muted}}
+let ambEl,ambNode;
+function setAmb(){ambSrc&&ambSrc.stop();ambSrc=null;ambEl&&ambEl.pause();if(!S.ambOn||!ctx)return;
+ const u=S.amb.startsWith('u:')&&S.ambs.find(a=>'u:'+a.id===S.amb);
+ if(u){if(!ambEl){ambEl=new Audio();ambEl.loop=true}const fb=ambEl.dataset.fb;
+  ambEl.onerror=()=>{if(ambNode||ambEl.dataset.fb)return;ambEl.dataset.fb=1;ambEl.crossOrigin=null;ambEl.src=u.url;applyGain();ambEl.play().catch(()=>{});log('ambiance: direct mode (max 100%)')};
+  ambEl.oncanplay=()=>{if(!ambNode&&!ambEl.dataset.fb){ambNode=ctx.createMediaElementSource(ambEl);ambNode.connect(gains.amb);ambEl.volume=1;ambEl.muted=false;applyGain()}};
+  if(fb||!u.file){ambEl.crossOrigin=u.file?null:'anonymous';ambEl.src=u.url}else{ambEl.crossOrigin='anonymous';ambEl.src='tkt://media/'+encodeURIComponent(u.file.split(/[\/]/).pop())}
+  applyGain();ambEl.play().catch(e=>log('ambiance failed: '+e.message));return}
+ ambSrc=ctx.createBufferSource();ambSrc.buffer=amb(ctx,S.amb);ambSrc.loop=true;ambSrc.connect(gains.amb);ambSrc.start()}
+function play(kind,code){if(S.muted||!S[kind+'On'])return;initAudio();if(ctx.state!=='running')ctx.resume();const t0=performance.now();
+ const pk=packs[S[kind+'Pack']];if(!pk)return;const df=pk.config.definitions;const def=df[code]||Object.values(df)[0];
+ const [a,e]=def.timing[Math.random()*def.timing.length|0];
+ if(voices.length>=POOL){const o=voices.shift(),n=ctx.currentTime;o.g.gain.linearRampToValueAtTime(0,n+.04);o.s.stop(n+.05);log('pool: soft-evict oldest voice (fade 40 ms)',1)}
+ const s=ctx.createBufferSource(),g=ctx.createGain();s.buffer=pk.buffer;
+ s.playbackRate.value=S[kind+'Pitch']?1+(Math.random()<.5?-1:1)*(S.pitch/100)*(.7+.3*Math.random()):1;
+ s.connect(g);g.connect(gains[kind]);const now=ctx.currentTime,dur=(e-a)/1e3/s.playbackRate.value;
+ g.gain.setValueAtTime(1,now+Math.max(0,dur-.008));g.gain.linearRampToValueAtTime(0,now+dur);s.start(now,a/1e3,(e-a)/1e3);s.stop(now+dur+.01);
+ const v={s,g};voices.push(v);s.onended=()=>{const i=voices.indexOf(v);i>=0&&voices.splice(i,1)};
+ const l=performance.now()-t0+(ctx.baseLatency+(ctx.outputLatency||0))*1e3;lats.push(l);if(lats.length>20)lats.shift();
+ $('#lat').textContent=(lats.reduce((x,y)=>x+y,0)/lats.length).toFixed(0);log(`${kind==='kb'?'key':'mouse'} ${code} → voice ${String(voices.length).padStart(2,'0')} latency ${l.toFixed(1)} ms`,1)}
+// ---------- input ----------
+let globalHook=false;const kindOf=c=>/^(Mouse|Wheel)/.test(c)?'ms':'kb';
+let pt;const press=on=>{const b=document.querySelector('.banner');if(!b)return;b.classList.toggle('press',on);clearTimeout(pt);if(on)pt=setTimeout(()=>b.classList.remove('press'),600)};
+const hit=(k,c,fx)=>{if(fx)press(true);play(k,c)};
+addEventListener('keyup',()=>{if(!globalHook)press(false)});addEventListener('mouseup',()=>{if(!globalHook)press(false)});
+addEventListener('keydown',e=>{if(!globalHook&&!e.repeat&&!/INPUT|SELECT/.test(e.target.tagName))hit('kb',e.code,1)});
+addEventListener('mousedown',e=>{if(!globalHook&&e.target.closest('main')&&!/BUTTON|SELECT|INPUT/.test(e.target.tagName))hit('ms',['MouseLeft','MouseMiddle','MouseRight'][e.button],!!e.target.closest('.banner'))});
+addEventListener('wheel',e=>{if(!globalHook)hit('ms',e.deltaY<0?'WheelUp':'WheelDown')},{passive:true});
+log(window.mvdx?'bridge: ok':'bridge: MISSING (preload failed) - window buttons cannot work');
+if(window.mvdx){mvdx.hook().then(h=>{globalHook=h;log(h?'input: global hook active':'input: window-only mode')});
+ mvdx.onInput(d=>{if(d.up){if(d.kind==='kb')press(false);return}const k=d.kind||kindOf(d.code);hit(k,d.code,k==='kb')});mvdx.onMute(()=>{save('muted',!S.muted);applyGain();ui()})}
+// ---------- devices ----------
+async function outputs(){try{return(await navigator.mediaDevices.enumerateDevices()).filter(d=>d.kind==='audiooutput')}catch{return[]}}
+navigator.mediaDevices&&(navigator.mediaDevices.ondevicechange=async()=>{const ds=await outputs();if(!ctx||!ctx.setSinkId||!S.out)return;
+ const has=ds.some(d=>d.deviceId===S.out);if(!has){await ctx.setSinkId('');log('output device removed → fallback to system default')}else{await ctx.setSinkId(S.out);log('output device restored → switched back')}if(S.tab.startsWith('Audio'))ui()});
+// ---------- soundpack import (V2 single) ----------
+async function addPack(config,raw){initAudio();const copy=raw.slice(0),buffer=await ctx.decodeAudioData(raw);
+ packs[config.id]={id:config.id,name:config.name,type:config.soundpack_type||'Keyboard',author:config.author||'?',version:config.version||'',config,buffer};return copy}
+async function importPack(files){files=[...files];const cf=files.find(f=>f.name==='config.json');if(!cf)return alert('config.json not found');
+ const c=JSON.parse(await cf.text());if(c.config_version!=='2'||c.definition_method!=='single')return alert('Only V2 "single" packs supported (V1 conversion not included)');
+ const af=files.find(f=>f.name===c.audio_file);if(!af)return alert('audio file missing: '+c.audio_file);
+ const copy=await addPack(c,await af.arrayBuffer());await DB.save({id:c.id,meta:JSON.stringify(c),audio:new Uint8Array(copy)});log('pack loaded: '+c.id+' (resample-on-load ✓)');ui()}
+async function loadSaved(){initAudio();for(const p of await DB.packs()){try{const u=await DB.pack(p.id);const raw=u.buffer?u.buffer.slice(u.byteOffset,u.byteOffset+u.byteLength):u;await addPack(JSON.parse(p.meta),raw)}catch(e){log('pack failed: '+p.id)}}}
+$('#grip').addEventListener('mousedown',async e=>{if(!window.mvdx)return;e.preventDefault();const[w0,h0]=await mvdx.size(),x0=e.screenX,y0=e.screenY;
+ const mv=ev=>mvdx.win('resize',Math.max(420,w0+ev.screenX-x0),Math.max(520,h0+ev.screenY-y0));
+ const up=()=>{removeEventListener('mousemove',mv);removeEventListener('mouseup',up)};addEventListener('mousemove',mv);addEventListener('mouseup',up)});
+// ---------- UI ----------
+const THL=[["classic", "Classic Indigo", "dark", "#1b202b", "#252b3a", "#5b5bf0"], ["synthwave", "Dark Synthwave", "dark", "#120a24", "#1e1236", "#ff3fa4"], ["forest", "Forest Green", "dark", "#08130c", "#102016", "#34c759"], ["ocean", "Ocean Blue", "dark", "#06121d", "#0d2236", "#38bdf8"], ["sunset", "Sunset Glow", "dark", "#1a0c10", "#2b1319", "#fb7185"], ["amethyst", "Amethyst", "dark", "#0f0a1f", "#1a1235", "#a78bfa"], ["neon", "Cyber Neon", "dark", "#05060b", "#0c0f1a", "#22ff88"], ["graphite", "Graphite", "dark", "#111214", "#1c1d20", "#e5e7eb"], ["white", "Minimalist White", "light", "#eef1f6", "#ffffff", "#2563eb"], ["rose", "Soft Rose", "light", "#fdf2f4", "#ffffff", "#e11d48"], ["mint", "Fresh Mint", "light", "#ecfdf5", "#ffffff", "#059669"]],THM=Object.fromEntries(THL.map(x=>[x[0],x[2]]));
+const IC={home:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',music:'<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+ pal:'<circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0 0 20z" fill="currentColor"/>',cloud:'<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>',
+ sl:'<line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/>'};
+const pk=t=>Object.values(packs).filter(p=>p.type===t);
+const tg=(a,on)=>`<label class="tg"><input type="checkbox" ${a} ${on?'checked':''}><i></i></label>`;
+const dd=(key,list,sel,inner)=>`<div class="pc dd" data-dd="${key}" role="button" tabindex="0" aria-haspopup="listbox">${inner}<span>⌄</span><div class="dm" hidden>${list.map(([v,t])=>`<div class="di ${v==sel?'sel':''}" data-v="${v}">${t}</div>`).join('')}</div></div>`;
+const pi=p=>`<div class="pi">${p.builtin?'♫':'M'}</div>`;
+function pkCard(k,t){const p=packs[S[k+'Pack']]||{name:'—',author:''},v=S[k+'Vol'];return `<div class="sec"><div class="sp"><b>${k==='kb'?'⌨ Keyboard':'🖱 Mouse'}</b>
+ <button class="ic2" data-shuf="${k}" aria-label="Random pack">⇄</button></div>
+ ${dd(k+'Pack',pk(t).map(x=>[x.id,x.name]),S[k+'Pack'],`${pi(p)}<div style="flex:1"><div>${p.name}</div><div class="sub">by ${p.author}</div></div>`)}
+ <div class="vr"><span class="pct ${v>100?'hot':''}">${v}%</span><input class="${v>100?'hot':''}" type="range" min="0" max="${S.boost?200:100}" value="${Math.min(v,S.boost?200:100)}" data-k="${k}Vol" aria-label="${t} volume">
+ <button class="mu" data-mute="${k}" aria-label="Mute ${t}">${S[k+'On']?'🔊':'🔇'}</button></div></div>`}
+const prow=p=>`<div class="pc">${pi(p)}<div style="flex:1"><div>${p.name}</div><div class="sub">by ${p.author} · v${p.version}</div></div><button class="b" data-del="${p.id}">Delete</button></div>`;
+function ask(msg,ok='Delete'){return new Promise(r=>{const m=document.createElement('div');m.className='mo';
+ if(S.lang==='ar')msg=msg.replace(/^Remove built-in sound pack "(.*)"\? You can restore it from the Sound packs page\.$/,(x,n)=>'هل تريد إزالة الحزمة المدمجة "'+n+'"؟ يمكنك استعادتها من صفحة الحزم الصوتية.').replace(/^Delete (image|sound pack|sound) "(.*)" from Taktaka\? This cannot be undone\.$/,(x,k,n)=>'هل تريد حذف '+({image:'الصورة','sound pack':'الحزمة',sound:'الصوت'})[k]+' "'+n+'" من Taktaka؟ لا يمكن التراجع.');
+ m.innerHTML=`<div class="mb" role="dialog" aria-modal="true"><p>⚠ ${msg}</p><div class="sp"><button class="b" data-a="0">Cancel</button><button class="b p" data-a="1">${ok}</button></div></div>`;
+ m.onclick=e=>{const a=e.target.dataset.a;if(a!==undefined||e.target===m){m.remove();r(a==='1')}};document.body.appendChild(m);tr(m)})}
+const gal=(kind,cur)=>`<div class="gal"><div class="tile ${!cur?'on':''}" data-pick="${kind}" data-url="" role="button" tabindex="0">None</div>${S.imgs.filter(i=>i.kind===kind).map(i=>`<div class="tile ${cur===i.url?'on':''}" data-pick="${kind}" data-url="${i.url}" style="background-image:url('${i.url}')" title="${i.name}" role="button" tabindex="0"><button class="x" data-imgdel="${i.id}" aria-label="Delete ${i.name}">✕</button></div>`).join('')}</div>`;
+async function addImg(files,kind){for(const f of files){const name=f.name.replace(/\.[^.]+$/,'');let rec;const id=Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+ if(window.mvdx&&mvdx.img){const r=await mvdx.img.add(mvdx.path(f));rec={id,name,kind,file:r.file,url:r.url}}
+ else rec={id,name,kind,url:await new Promise(ok=>{const fr=new FileReader();fr.onload=()=>ok(fr.result);fr.readAsDataURL(f)})};
+ save('imgs',[...S.imgs,rec]);save(kind,rec.url);log('image added: '+name)}ui()}
+async function addSound(files,type){initAudio();for(const f of files){try{const raw=await f.arrayBuffer(),buf=await ctx.decodeAudioData(raw.slice(0));
+ const dur=Math.min(buf.duration,3)*1e3,defs={};(type==='Keyboard'?KEYS:MKEYS).forEach(k=>defs[k]={timing:[[0,dur]]});
+ const id='c'+Date.now().toString(36)+Math.random().toString(36).slice(2,4),name=f.name.replace(/\.[^.]+$/,'');
+ const config={config_version:'2',id,name,author:'Custom',version:'1.0.0',soundpack_type:type,definition_method:'single',audio_file:f.name,definitions:defs};
+ const copy=await addPack(config,raw);await DB.save({id,meta:JSON.stringify(config),audio:new Uint8Array(copy)});
+ if(S.autoUse)save(type==='Keyboard'?'kbPack':'msPack',id);log('sound added: '+name)}catch(e){alert('Could not read "'+f.name+'" as audio')}}ui()}
+let devs=[],devKey='';
+const ambList=()=>[['Rain','Rain'],['Ocean','Ocean waves'],['Fire','Fireplace'],['Cafe','Café murmur'],...S.ambs.map(a=>['u:'+a.id,a.name])];
+const VIEWS={
+ Home:()=>`<div class="banner">Taktaka</div>${pkCard('kb','Keyboard')}<hr>${pkCard('ms','Mouse')}<hr>
+  <div class="line"><span>🔊 <b>Enable all sounds</b></span>${tg('id="all"',!S.muted)}</div><hr>
+  <div class="line"><span>✎ <b>Sound pack editor</b></span><button class="b" data-tab="Sound packs">Open ↗</button></div>`,
+ 'Sound packs':()=>`<h2>⌨ Keyboard packs</h2>${pk('Keyboard').map(prow).join('')}<h2>🖱 Mouse packs</h2>${pk('Mouse').map(prow).join('')}${S.hidden.length?'<button class="b" id="restore">Restore built-in sounds</button>':''}
+  <div class="sub">Add your own sounds: any audio or video file (only the audio is used, first 3 seconds). Each file becomes one pack.</div>
+  <label class="b p" style="text-align:center">+ Add keyboard sound<input type="file" id="sndkb" accept="audio/*,video/*" multiple hidden></label>
+  <label class="b p" style="text-align:center">+ Add mouse sound<input type="file" id="sndms" accept="audio/*,video/*" multiple hidden></label>
+  <label class="b" style="text-align:center">Import V2 pack (select folder)<input type="file" id="imp" webkitdirectory multiple hidden></label>`,
+ Customize:()=>`<h2>Theme</h2><div class="thg">${THL.map(([k,n,m,a,b,c])=>`<div class="th ${S.theme===k?'on':''}" data-th="${k}" role="button" tabindex="0"><i class="sw" style="--p0:${a};--p1:${b};--p2:${c}"></i>${n}</div>`).join('')}</div>
+  <div class="sp"><span>Component opacity</span><span class="sub" id="v-op">${S.op}%</span></div><div class="sub">How see-through the cards are.</div><input type="range" min="15" max="100" value="${S.op}" data-k="op" aria-label="Component opacity">
+  <div class="sp"><span>Background image</span><span class="sub" id="v-bgo">${S.bgo}%</span></div><div class="sub">Lower = picture fades, app stands out.</div><input type="range" min="0" max="100" value="${S.bgo}" data-k="bgo" aria-label="Background image opacity">
+  <h2>Background images</h2>${gal('bg',S.bg)}<label class="b p" style="text-align:center">+ Add background image<input type="file" id="imgbg" accept="image/*" multiple hidden></label>`,
+ Mood:()=>`<h2>Ambiance</h2>${dd('amb',ambList(),S.amb,`<div class="pi">☂</div><div style="flex:1">${(ambList().find(a=>a[0]===S.amb)||['',S.amb])[1]}</div>`)}
+  <div class="vr"><span class="pct ${S.ambVol>100?'hot':''}">${S.ambVol}%</span><input type="range" min="0" max="${S.boost?200:100}" value="${Math.min(S.ambVol,S.boost?200:100)}" data-k="ambVol" aria-label="Ambiance volume"><button class="mu" id="ambBtn" aria-label="Play or pause">${S.ambOn?'❚❚':'▶'}</button></div>
+  <label class="b p" style="text-align:center">+ Add sound or video (audio only, any size)<input type="file" id="ambup" accept="audio/*,video/*" multiple hidden></label>
+  ${S.ambs.map(a=>`<div class="line"><span>${a.name}</span><button class="x" data-ambdel="${a.id}" aria-label="Remove ${a.name}">✕</button></div>`).join('')}`,
+ Settings:()=>`<button class="b" data-tab="Help">❓ Help · شرح البرنامج</button>
+  <div class="sp"><span>Language · اللغة</span><div class="seg"><button class="b ${S.lang==='en'?'p':''}" data-ui="en">English</button><button class="b ${S.lang==='ar'?'p':''}" data-ui="ar">العربية</button></div></div><h2>Output device</h2>${dd('out',[['','System default'],...devs.filter(d=>d.deviceId&&d.deviceId!=='default').map(d=>[d.deviceId,d.label||'Output '+d.deviceId.slice(0,6)])],S.out,
+  `<div class="pi">🔈</div><div style="flex:1">${(devs.find(d=>d.deviceId===S.out)||{label:'System default'}).label||'System default'}</div>`)}
+  <div class="sub">Switches live. Falls back to default if unplugged, returns when reconnected.</div><hr>
+  <div class="line"><span>Allow volume above 100% (up to 200%)</span>${tg('data-k="boost"',S.boost)}</div>
+  <div class="sub">Off (default): sliders stop at 100%. On: sliders go up to 200%.</div>
+  <div class="line"><span>Use newly added sounds automatically</span>${tg('data-k="autoUse"',S.autoUse)}</div>
+  <div class="sub">Off (default): a sound you add stays in the list until you pick it. On: it becomes active at once.</div><hr>
+  <div class="line"><span>Keep window on top of other apps</span>${tg('data-k="top"',S.top)}</div>
+  <div class="line"><span>Keyboard random pitch</span>${tg('data-k="kbPitch"',S.kbPitch)}</div>
+  <div class="line"><span>Mouse random pitch</span>${tg('data-k="msPitch"',S.msPitch)}</div>
+  <div class="sp"><span>Pitch variation</span><span class="sub" id="v-pitch">${S.pitch}%</span></div><input type="range" min="5" max="50" value="${S.pitch}" data-k="pitch" aria-label="Pitch variation">
+  <div class="sub">Random pitch changes each sound a little so repeated keys do not sound robotic.</div><hr>
+  <div class="sp"><h2>Debug log</h2><span><label class="sub">Verbose <input type="checkbox" data-k="verbose" ${S.verbose?'checked':''}></label> <button class="b p" id="exp">Export</button></span></div>
+  <div class="sub">Verbose: also log every key press, its voice and its latency. Off = system events only.</div><div id="log"></div>`};
+const css=()=>{const r=document.documentElement;r.style.setProperty('--op',S.op+'%');r.style.setProperty('--bgo',S.bgo/100);r.style.setProperty('--blur',(6+(100-S.op)*.22)+'px')};
+const HELP={ar:[
+['الرئيسية (Home)','اختر حزمة صوت للوحة المفاتيح وحزمة للفأرة. شريط الصوت من 0 إلى 100%، وحتى 200% بعد تفعيل خيار السماح بأكثر من 100% في الإعدادات. الرقم الأصفر يعني أنك فوق 100%، وهو تضخيم حقيقي للصوت. زر الخلط يختار حزمة عشوائية. زر السماعة يكتم النوع وحده. مفتاح (Enable all sounds) يكتم كل شيء.'],
+['حزم الصوت (Sound packs)','قائمة لحزم لوحة المفاتيح وقائمة لحزم الفأرة. للاستيراد اختر مجلد حزمة بصيغة V2 فيه ملف `config.json` وملف الصوت.'],
+['التخصيص (Customize)','المظهر: 11 مظهرا جاهزا، داكنة وفاتحة. شفافية المكونات (Component opacity) تجعل البطاقات شفافة فترى الخلفية من خلفها. ظهور صورة الخلفية (Background image) يقلل وضوح الصورة نفسها، فيبرز البرنامج وتبقى الصورة موجودة. يمكنك رفع صور خلفية واختيار أحدها.'],
+['الأجواء (Mood)','صوت يعمل في الخلفية مثل المطر. أضف أي ملف صوت أو فيديو بأي حجم ومدة. من الفيديو يؤخذ الصوت فقط. الشريط يصل إلى 100%، أو 200% عند تفعيل الخيار في الإعدادات.'],
+['الإعدادات (Settings)','جهاز الإخراج: يبدل الصوت فورا، ويعود للافتراضي إذا فُصل الجهاز. السماح بأكثر من 100% (مطفأ افتراضيا): عند تفعيله تصل الأشرطة إلى 200%. استخدام الأصوات الجديدة تلقائيا (مطفأ افتراضيا): عند تفعيله يصير أي صوت تضيفه هو المستخدم فورا، وإلا فاختره أنت. إبقاء النافذة فوق التطبيقات: يمنعها من الاختفاء خلف نوافذك. تباين الحدة (Random pitch): يغيّر كل صوت قليلا ليبدو طبيعيا. التفصيلي (Verbose): يسجل كل ضغطة وزمن استجابتها، وهو للفحص فقط. سجل التشخيص (Debug log): أحداث البرنامج، ويمكن تصديره.'],
+['زر العين وجانب الساعة','زر العين في الأعلى يخفي النافذة، ويبقى البرنامج يعمل بجانب الساعة. انقر على أيقونته لإظهاره. زر X يغلق البرنامج كله. قد تجد الأيقونة داخل السهم الصغير بجانب الساعة.']],
+en:[
+['Home','Pick a sound pack for keyboard and one for mouse. Volume goes 0–100%, up to 200% once you enable the option in Settings. A yellow number means above 100%, which is real amplification. Shuffle picks a random pack. The speaker button mutes one device type. "Enable all sounds" mutes everything.'],
+['Sound packs','One list for keyboard packs, one for mouse packs. To import, choose a V2 pack folder that has `config.json` and its audio file.'],
+['Customize','Theme: 11 ready looks, dark and light. Component opacity makes cards see-through so you see the background behind them. Background image dims the picture itself so the app stands out while the picture stays. You can upload background images and pick one.'],
+['Mood','Background sound such as rain. Add any audio or video file, any size or length. Only the audio of a video is used. The slider goes up to 100%, or 200% when the Settings option is on.'],
+['Settings','Output device: switches live and falls back to default if unplugged. Allow above 100% (off by default): lets sliders reach 200%. Use new sounds automatically (off by default): a sound you add becomes active at once; otherwise you pick it. Keep window on top: stops it hiding behind other windows. Random pitch: varies each sound slightly so it feels natural. Verbose: logs every key press and its latency, for testing only. Debug log: app events, exportable.'],
+['Eye button and system tray','The eye button hides the window; the app keeps running next to the clock. Click its icon to show it again. X quits the app. The icon may sit under the small arrow near the clock.']]};
+VIEWS.Help=()=>{const L=S.helpLang==='en'?'en':'ar';return `<div class="sp"><button class="b" data-tab="Settings">${L==='ar'?'→ رجوع':'← Back'}</button>
+ <div class="seg"><button class="b ${L==='ar'?'p':''}" data-lang="ar">عربي</button><button class="b ${L==='en'?'p':''}" data-lang="en">English</button></div><span style="width:64px"></span></div>
+ <div dir="${L==='ar'?'rtl':'ltr'}" class="help">${HELP[L].map(([t,x])=>`<h2>${t}</h2><p>${x.replace(/`([^`]+)`/g,'<b>$1</b>')}</p>`).join('')}</div>`};
+function ui(){const r=document.documentElement;r.dir=S.lang==='ar'?'rtl':'ltr';r.lang=S.lang==='ar'?'ar':'en';r.dataset.theme=S.theme;r.dataset.mode=THM[S.theme]||'dark';r.style.setProperty('--op',S.op+'%');
+ $('#bgimg').style.backgroundImage=S.bg?`url("${S.bg}")`:'';css();
+ $('#nav').innerHTML=TABS.map(([t,i])=>`<button class="${t===S.tab?'on':''}" data-tab="${t}"><b><svg viewBox="0 0 24 24">${IC[i]}</svg></b>${t}</button>`).join('');
+ $('#main').innerHTML=(VIEWS[S.tab]||VIEWS.Home)();
+ if(S.tab==='Settings'){$('#log').textContent=LOG.join('\n');outputs().then(ds=>{const n=JSON.stringify(ds.map(d=>d.deviceId+d.label));if(n!==devKey){devKey=n;devs=ds;if(S.tab==='Settings')ui()}})}}
+const AR={"Enable all sounds":"تفعيل كل الأصوات","Sound pack editor":"محرر الحزم الصوتية","Open ↗":"فتح ↗","Keyboard packs":"حزم لوحة المفاتيح","Mouse packs":"حزم الفأرة",
+"Keyboard random pitch":"تباين حدة لوحة المفاتيح","Mouse random pitch":"تباين حدة الفأرة","Keyboard":"لوحة المفاتيح","Mouse":"الفأرة","by ":"بواسطة ","Built-in":"مدمج","Customize":"التخصيص","Custom":"مخصص",
+"Delete":"حذف","Cancel":"إلغاء","Add your own sounds: any audio or video file (only the audio is used, first 3 seconds). Each file becomes one pack.":"أضف أصواتك: أي ملف صوت أو فيديو (يُستخدم الصوت فقط، وأول 3 ثوان). كل ملف يصير حزمة.",
+"+ Add keyboard sound":"+ إضافة صوت للوحة المفاتيح","+ Add mouse sound":"+ إضافة صوت للفأرة","Import V2 pack (select folder)":"استيراد حزمة V2 (اختر المجلد)","Theme":"المظهر","Ocean Blue":"أزرق المحيط","Sunset Glow":"وهج الغروب","Amethyst":"جمشت","Cyber Neon":"نيون سايبر","Graphite":"جرافيت","Soft Rose":"وردي ناعم","Fresh Mint":"نعناع منعش","Restore built-in sounds":"استعادة الأصوات المدمجة",
+"Classic Indigo":"نيلي كلاسيكي","Dark Synthwave":"سينثويف داكن","Minimalist White":"أبيض بسيط","Forest Green":"أخضر الغابة","Component opacity":"شفافية المكونات","How see-through the cards are.":"مقدار شفافية البطاقات.",
+"Background images":"صور الخلفية","Background image":"صورة الخلفية","Lower = picture fades, app stands out.":"أقل = تبهت الصورة ويبرز البرنامج.","None":"بدون","+ Add background image":"+ إضافة صورة خلفية","Logo":"الشعار",
+"Shown at the top of Home. It presses down when you hit a key.":"يظهر أعلى الرئيسية. ينضغط عند الضغط على أي زر.","+ Add logo":"+ إضافة شعار","Light mode":"الوضع الفاتح","Ambiance":"الأجواء","Ocean waves":"أمواج البحر",
+"Fireplace":"مدفأة","Café murmur":"همس مقهى","Rain":"مطر","+ Add sound or video (audio only, any size)":"+ إضافة صوت أو فيديو (الصوت فقط، بأي حجم)","Output device":"جهاز الإخراج","System default":"افتراضي النظام",
+"Switches live. Falls back to default if unplugged, returns when reconnected.":"يتبدل فورا. يرجع للافتراضي عند الفصل ويعود عند إعادة التوصيل.","Allow volume above 100% (up to 200%)":"السماح بصوت أعلى من 100% (حتى 200%)",
+"Off (default): sliders stop at 100%. On: sliders go up to 200%.":"مطفأ (افتراضي): الأشرطة تقف عند 100%. مفعّل: تصل إلى 200%.","Use newly added sounds automatically":"استخدام الأصوات المضافة تلقائيا",
+"Off (default): a sound you add stays in the list until you pick it. On: it becomes active at once.":"مطفأ (افتراضي): الصوت المضاف يبقى في القائمة حتى تختاره. مفعّل: يصير مستخدما فورا.","Keep window on top of other apps":"إبقاء النافذة فوق التطبيقات",
+"Pitch variation":"مقدار تباين الحدة","Random pitch changes each sound a little so repeated keys do not sound robotic.":"تباين الحدة يغيّر كل صوت قليلا فلا يبدو الصوت المتكرر آليا.","Debug log":"سجل التشخيص",
+"Verbose: also log every key press, its voice and its latency. Off = system events only.":"التفصيلي: يسجل كل ضغطة وصوتها وزمن استجابتها. مطفأ = أحداث النظام فقط.","Verbose":"التفصيلي","Export":"تصدير",
+"Home":"الرئيسية","Sound packs":"الحزم الصوتية","Mood":"الأجواء","Settings":"الإعدادات","❓ Help · شرح البرنامج":"❓ شرح البرنامج","Latency ≈":"زمن الاستجابة ≈","ms · 32-voice pool":"مللي ثانية · مجمع 32 صوتا"};
+const ARK=Object.keys(AR).sort((a,b)=>b.length-a.length),OT=new WeakMap();
+function tr(root){const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),L=[];let n;while(n=w.nextNode())L.push(n);
+ for(const x of L){if(x.parentElement&&x.parentElement.closest('script,style,.help,.no-tr,#log'))continue;
+  const b=OT.has(x)?OT.get(x):x.nodeValue;OT.set(x,b);let s=b;if(S.lang==='ar')for(const k of ARK)if(s.includes(k))s=s.split(k).join(AR[k]);if(x.nodeValue!==s)x.nodeValue=s}}
+{const _u=ui;ui=function(){_u();tr(document.body)}}
+async function addAmb(files){for(const f of files){const name=f.name.replace(/\.[^.]+$/,'');let rec;
+ if(window.mvdx&&mvdx.amb){const r=await mvdx.amb.add(mvdx.path(f));rec={id:r.id,name,file:r.file,url:r.url}}else rec={id:Date.now()+'',name,url:URL.createObjectURL(f)};
+ save('ambs',[...S.ambs,rec]);log('ambiance added: '+name)}ui()}
+document.addEventListener('input',e=>{const t=e.target,k=t.dataset.k;if(!k)return;initAudio();
+ const v=t.type==='checkbox'?t.checked:t.type==='range'?+t.value:t.value;
+ if(t.type==='range'){S[k]=v;applyGain();css();const lb=document.getElementById('v-'+k);if(lb)lb.textContent=v+'%';else{const p=t.previousElementSibling;p.textContent=v+'%';p.classList.toggle('hot',v>100);t.classList.toggle('hot',v>100)}return}
+ save(k,v);if(k==='boost'&&!v)for(const x of['kbVol','msVol','ambVol'])if(S[x]>100)save(x,100);applyGain();if(k==='top'&&window.mvdx)mvdx.win('top',v);ui()});
+document.addEventListener('change',e=>{const t=e.target,k=t.dataset.k;if(k&&t.type==='range'){DB.set(k,S[k]);if(/Vol$/.test(k))log(`${k} → gain ×${(S[k]/100).toFixed(2)}`)}});
+document.addEventListener('change',e=>{const t=e.target;
+ if(t.id==='all'){save('muted',!t.checked);applyGain()}
+ if(t.id==='imp')importPack(t.files);if(t.id==='ambup')addAmb(t.files);
+ if(t.id==='sndkb')addSound(t.files,'Keyboard');if(t.id==='sndms')addSound(t.files,'Mouse');
+ if(t.id==='imgbg')addImg(t.files,'bg');if(t.id==='imglogo')addImg(t.files,'logo');
+ if(t.dataset.img){const r=new FileReader();r.onload=()=>{save(t.dataset.img,r.result);ui()};r.readAsDataURL(t.files[0])}});
+document.addEventListener('click',async e=>{const di=e.target.closest('.di'),d=e.target.closest('.dd');
+ document.querySelectorAll('.dm').forEach(m=>{m.hidden=!(d&&!di&&m.parentElement===d&&m.hidden)});
+ if(di){const k=d.dataset.dd,v=di.dataset.v;save(k,v);initAudio();
+  if(k==='out'){ctx.setSinkId&&await ctx.setSinkId(v);ambEl&&ambEl.setSinkId&&ambEl.setSinkId(v).catch(()=>{});log('output → '+(v||'system default'))}
+  if(k==='amb')setAmb();ui();return}
+ const t=e.target.closest('[data-tab],[data-th],[data-del],[data-mute],[data-shuf],[data-win],[data-img-clear],[data-ambdel],[data-lang],[data-pick],[data-imgdel],[data-ui],#restore,#ambBtn,#exp');if(!t)return;
+ if(t.dataset.lang){save('helpLang',t.dataset.lang);ui()}
+ if(t.dataset.tab){save('tab',t.dataset.tab);ui()}
+ if(t.dataset.th){save('theme',t.dataset.th);ui()}
+ if(t.dataset.mute){save(t.dataset.mute+'On',!S[t.dataset.mute+'On']);ui()}
+ if(t.dataset.shuf){const l=pk(t.dataset.shuf==='kb'?'Keyboard':'Mouse');if(l.length)save(t.dataset.shuf+'Pack',l[Math.random()*l.length|0].id);ui()}
+ if(t.dataset.win&&window.mvdx)mvdx.win(t.dataset.win);
+ if(t.id==='ambBtn'){initAudio();save('ambOn',!S.ambOn);setAmb();ui()}
+ if(t.dataset.ui){save('lang',t.dataset.ui);save('helpLang',t.dataset.ui);ui()}
+ if(t.dataset.pick){save(t.dataset.pick,t.dataset.url);ui()}
+ if(t.dataset.imgdel){const i=S.imgs.find(x=>x.id===t.dataset.imgdel);if(i&&await ask('Delete image "'+i.name+'" from Taktaka? This cannot be undone.')){
+  i.file&&window.mvdx&&mvdx.img.del(i.file);save('imgs',S.imgs.filter(x=>x!==i));if(S.bg===i.url)save('bg','');if(S.logo===i.url)save('logo','');ui()}}
+ if(t.dataset.ambdel){const a=S.ambs.find(x=>x.id===t.dataset.ambdel);if(a&&await ask('Delete sound "'+a.name+'" from Taktaka? This cannot be undone.')){
+  a.file&&window.mvdx&&mvdx.amb.del(a.file);save('ambs',S.ambs.filter(x=>x!==a));if(S.amb==='u:'+a.id){save('amb','Rain');setAmb()}ui()}}
+ if(t.dataset.del){const p=packs[t.dataset.del];if(p&&await ask(p.builtin?'Remove built-in sound pack "'+p.name+'"? You can restore it from the Sound packs page.':'Delete sound pack "'+p.name+'" from Taktaka? This cannot be undone.')){
+  if(p.builtin)save('hidden',[...S.hidden,p.id]);else DB.del(p.id);delete packs[p.id];
+  for(const [key,ty] of[['kbPack','Keyboard'],['msPack','Mouse']])if(S[key]===p.id){const f=Object.values(packs).find(x=>x.type===ty);save(key,f?f.id:'')}ui()}}
+ if(t.id==='restore'){save('hidden',[]);builtins();ui()}
+ if(t.hasAttribute('data-img-clear')){save('bg','');save('logo','');ui()}
+ if(t.id==='exp'){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([LOG.join('\n')]));a.download='mechvibesdx-log.txt';a.click()}});
+document.addEventListener('keydown',e=>{if(e.target.matches&&e.target.matches('[data-th],.dd')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();e.target.click()}});
+(async()=>{Object.assign(S,await DB.settings());S.tab=S.tab||'Home';S.ambs=S.ambs||[];S.imgs=S.imgs||[];if(!S.boost)for(const x of['kbVol','msVol','ambVol'])if(S[x]>100)S[x]=100;window.mvdx&&mvdx.win('top',!!S.top);initAudio();await loadSaved();
+ S.hidden=S.hidden||[];S.hidden.forEach(id=>delete packs[id]);for(const k of['kbPack','msPack'])if(!packs[S[k]]){const f=Object.values(packs).find(x=>x.type===(k==='kbPack'?'Keyboard':'Mouse'));S[k]=f?f.id:''}if(S.op<15)S.op=15;ui()})();
+</script></body></html>
